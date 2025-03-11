@@ -7,7 +7,9 @@ function getEstudiantes() {
             studentsList.innerHTML = '';
             estudiantes.forEach(function (estudiante) {
                 const li = document.createElement('li');
-                li.textContent = `${estudiante.nombre} ${estudiante.apellidos}`;
+                li.classList.add('p-4', 'bg-gray-50', 'rounded', 'shadow', 'hover:bg-gray-100');
+                li.textContent = `${estudiante.nombre} ${estudiante.apellidos} - Media: cargando...`;
+
                 studentsList.appendChild(li);
 
                  // Ahora pedimos la media de cada estudiante
@@ -34,9 +36,10 @@ function getAsignaturas() {
             const asignaturas = response.data;
             const assignmentsList = document.getElementById('assignments');
             assignmentsList.innerHTML = '';
-            asignaturas.forEach(function (asignatura) {
+            asignaturas.forEach(function (asignatura) {               
                 const li = document.createElement('li');
-                li.textContent = `${asignatura.nombre} - Curso: ${asignatura.curso}`;
+                li.classList.add('p-4', 'bg-gray-50', 'rounded', 'shadow', 'hover:bg-gray-100');
+                li.textContent = `${asignatura.nombre} - Curso: ${asignatura.curso} - Media: cargando...`;
                 assignmentsList.appendChild(li);
 
                 // Ahora pedimos la media de cada asignatura
