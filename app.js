@@ -9,6 +9,17 @@ function getEstudiantes() {
                 const li = document.createElement('li');
                 li.textContent = `${estudiante.nombre} ${estudiante.apellidos}`;
                 studentsList.appendChild(li);
+
+                 // Ahora pedimos la media de cada estudiante
+                 axios.get(`http://127.0.0.1:8000/api/estudiantes/${estudiante.id}/media`)
+                 .then(function (resMedia) {
+                     const media = resMedia.data.media;
+                     li.textContent = `${estudiante.nombre} ${estudiante.apellidos} - Media: ${media !== null ? media.toFixed(2) : 'Sin notas'}`;
+                 })
+                 .catch(function (error) {
+                     console.log(error);
+                     li.textContent = `${estudiante.nombre} ${estudiante.apellidos} - Media: error al obtener`;
+                 });
             });
         })
         .catch(function (error) {
@@ -27,6 +38,17 @@ function getAsignaturas() {
                 const li = document.createElement('li');
                 li.textContent = `${asignatura.nombre} - Curso: ${asignatura.curso}`;
                 assignmentsList.appendChild(li);
+
+                // Ahora pedimos la media de cada asignatura
+                axios.get(`http://127.0.0.1:8000/api/asignaturas/${asignatura.id}/media`)
+                .then(function (resMedia) {
+                    const media = resMedia.data.media;
+                    li.textContent = `${asignatura.nombre} - Curso: ${asignatura.curso} - Media: ${media !== null ? media.toFixed(2) : 'Sin notas'}`;
+                })
+                .catch(function (error) {
+                    console.log(error);
+                    li.textContent = `${asignatura.nombre} - Curso: ${asignatura.curso} - Media: error al obtener`;
+                });
             });
         })
         .catch(function (error) {
